@@ -3,38 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuck By Riya</title>
+    <title>উন্নত এনিমেশন সহ টাইম কাউন্টডাউন</title>
     <style>
         body {
-            background-color: black;
-            color: lime;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
         }
-
-        .text-animation {
-            font-size: 2em;
+        #countdown {
+            display: flex;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+        .countdown-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .countdown-item span {
+            display: block;
+            font-size: 2.5em;
             font-weight: bold;
-            animation: blink 1s infinite, move 5s infinite;
         }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .countdown-item small {
+            font-size: 0.8em;
+            opacity: 0.8;
         }
+        .days { color: #ff9f43; }
+        .hours { color: #feca57; }
+        .minutes { color: #ff6b6b; }
+        .seconds { color: #48dbfb; }
 
-        @keyframes move {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="text-animation">Fuck By Riya 🖕🏻😂</div>
+    <div id="countdown">
+        <div class="countdown-item days">
+            <span id="days">00</span>
+            <small>দিন</small>
+        </div>
+        <div class="countdown-item hours">
+            <span id="hours">00</span>
+            <small>ঘণ্টা</small>
+        </div>
+        <div class="countdown-item minutes">
+            <span id="minutes">00</span>
+            <small>মিনিট</small>
+        </div>
+        <div class="countdown-item seconds">
+            <span id="seconds">00</span>
+            <small>সেকেন্ড</small>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("Feb 19, 2025 11:00:00").getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("days").innerHTML = days < 10 ? `0${days}` : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? `0${hours}` : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? `0${minutes}` : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? `0${seconds}` : seconds;
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<div style='font-size: 1.5em;'>সময় শেষ!</div>";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
